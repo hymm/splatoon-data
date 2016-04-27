@@ -25,6 +25,11 @@ export default class Root extends React.Component {
       return <Blaster data={data} ox={60+index*90} oy={200} />;
     }.bind(this));
   }
+  
+  // sub is 3 points, main is 10 points
+  defenseUp(weaponDamage, defPoints) {
+    return weaponDamage*(1-(0.99*defPoints-(0.09*defPoints)^2)/100/1.8)
+  }
 
   render() {
     var width = 500;
