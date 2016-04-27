@@ -1,5 +1,6 @@
 import React from 'react';
 import Blaster from './Blaster';
+import FiringRange from './FiringRange';
 import rawData from './splatoon-main-weapons-raw-data.json';
 
 var blasterNames = ['Luna Blaster', 'Blaster', 'Range Blaster', 'Rapid Blaster', 'Rapid Blaster Pro'];
@@ -21,15 +22,17 @@ export default class Root extends React.Component {
     });
 
     return blasters.map(function(data, index) {
-      return <Blaster data={data} ox={40+index*90} oy={200} />;
+      return <Blaster data={data} ox={60+index*90} oy={200} />;
     }.bind(this));
   }
 
   render() {
+    var width = 500;
     return (<div>
-      <svg svg width="500" height="500"
-          viewBox="0 0 500 500"
+      <svg svg width={width} height="500"
+          viewBox={"0 0 500 " + width}
           xmlns="http://www.w3.org/2000/svg">
+        <FiringRange width={width} height={200} oy={200} />
         {this.getBlastersJsx()}
       </svg>
     </div>);
