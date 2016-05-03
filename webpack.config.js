@@ -12,10 +12,12 @@ const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build'),
-  style: path.join(__dirname, 'app/main.css')
+  style: [
+    path.join(__dirname, 'app/main.css'),
+  ],
 };
 const ENV = {
-  host: process.env.HOST || 'localhost',
+  host: process.env.HOST || '192.187.224.90',
   port: process.env.PORT || 8080
 };
 
@@ -23,7 +25,7 @@ process.env.BABEL_ENV = TARGET;
 
 const common = {
   entry: {
-    app: PATHS.app
+    app: PATHS.app,
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
@@ -42,7 +44,16 @@ const common = {
         test: /\.jsx?$/,
         loaders: ['babel?cacheDirectory'],
         include: PATHS.app
-      }
+      },
+      { test: /\.scss$/, loaders: [ 'style', 'css', 'postcss', 'sass' ] },
+      {
+        test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "url?limit=10000"
+      },
+      {
+        test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
+        loader: 'file'
+      },
     ]
   },
   plugins: [
