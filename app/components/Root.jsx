@@ -5,20 +5,26 @@ import DamageScaleSvg from './DamageScaleSvg';
 import WeaponChart from './WeaponChart';
 import rawData from './splatoon-main-weapons-raw-data.json';
 import {Grid, Row, Col} from 'react-bootstrap';
+import {calculations} from './CalculateStuff';
 import 'bootstrap-loader';
 //import 'react-bootstrap-table/css/react-bootstrap-table.css'
 
 var blasterNames = ['Luna Blaster', 'Blaster', 'Range Blaster', 'Rapid Blaster', 'Rapid Blaster Pro'];
 
 export default class Root extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {data: calculations.calculate(rawData)};
+  }
+
   getBlaster(name) {
-    return rawData.find(function(weapon) {
+    return this.state.data.find(function(weapon) {
       return weapon.en_name === name;
     });
   }
 
   getBlastersJsx() {
-    var blasters = rawData.filter(function(weapon) {
+    var blasters = this.state.data.filter(function(weapon) {
       return weapon.class === 'blaster';
     });
 
@@ -52,7 +58,7 @@ export default class Root extends React.Component {
               {this.getBlastersJsx()}
               <DamageScaleSvg x={500} y={20} height={200} />
             </svg>
-            <WeaponChart data={rawData.filter(weapon => weapon.class === 'blaster')} />
+            <WeaponChart data={this.state.data.filter(weapon => weapon.class === 'blaster')} />
           </Col>
         </Row>
       </Grid>
