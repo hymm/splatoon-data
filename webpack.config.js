@@ -17,7 +17,7 @@ const PATHS = {
   ],
 };
 const ENV = {
-  host: process.env.HOST || '192.187.224.90',
+  host: process.env.HOST || 'localhost',
   port: process.env.PORT || 8080
 };
 

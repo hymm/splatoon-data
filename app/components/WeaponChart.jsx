@@ -35,6 +35,14 @@ export default class WeaponChart extends React.Component {
         <TableHeaderColumn dataField="ttkMiddle" dataAlign="center" dataSort={true}>Middle</TableHeaderColumn>
         <TableHeaderColumn dataField="ttkFar" dataAlign="center" dataSort={true}>Far</TableHeaderColumn>
       </BootstrapTable>
+      <BootstrapTable data={this.props.data} striped={true} hover={true}>
+        <TableHeaderColumn dataField="en_name" isKey={true} dataAlign="left" dataSort={true}>Name</TableHeaderColumn>
+        <TableHeaderColumn dataField="rangeStraight" dataAlign="center" dataFormat={(cell) => {return <div>{cell.toFixed(1)}</div>}} dataSort={true}>Straight Frame Range</TableHeaderColumn>
+        <TableHeaderColumn dataField="rangeNear" dataAlign="center" dataFormat={(cell) => {return <div>{cell.toFixed(1)}</div>}} dataSort={true}>Max Near Range</TableHeaderColumn>
+        <TableHeaderColumn dataField="rangeMiddle" dataAlign="center" dataFormat={(cell) => {return <div>{cell.toFixed(1)}</div>}} dataSort={true}>Max Middle Range</TableHeaderColumn>
+        <TableHeaderColumn dataField="rangeFar" dataAlign="center" dataFormat={(cell) => {return <div>{cell.toFixed(1)}</div>}} dataSort={true}>Max Far Range</TableHeaderColumn>
+        <TableHeaderColumn dataField="rangeSplashMin" dataAlign="center" dataFormat={(cell) => {return <div>{cell.toFixed(1)}</div>}} dataSort={true}>Min Splash Range</TableHeaderColumn>
+      </BootstrapTable>
       </div>
     );
   }
